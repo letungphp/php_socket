@@ -1,0 +1,4 @@
+Hướng dẫn sử dụng
+1.Chạy server PHP: Trong terminal, chạy "php server.php"
+2.Gửi thông báo tới các client bằng JavaScript: Mở file client_js.html trong trình duyệt.
+3.Gửi thông báo tới các client bằng PHP: Trong terminal khác, chạy php client_php.php.

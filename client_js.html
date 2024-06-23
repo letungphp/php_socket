@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <input type="text" id="messageInput" placeholder="Enter message">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="sendNotification()">Send Notification</button>
+    <div id="messages"></div>
+
+    <script>
+        onst token = 'valid_token_1'; // Thay đổi token cho phù hợp
+        const ws = new WebSocket('ws://127.0.0.1:8080/?token=' + token);
+
+        ws.onopen = function() {
+            console.log('Connected to the server');
+        };
+
+        ws.onmessage = function(event) {
+            const messagesDiv = document.getElementById('messages');
+            const message = document.createElement('p');
+            message.textContent = 'Received: ' + event.data;
+            messagesDiv.appendChild(message);
+        };
+
+        ws.onclose = function() {
+            console.log('Disconnected from the server');
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            ws.send(input.value);
+            input.value = '';
+        }
+
+        function sendNotification() {
+            const messagesDiv = document.getElementById('messages');
+            ws.send(messagesDiv);
+        }
+    </script>
+</body>
+</html>
